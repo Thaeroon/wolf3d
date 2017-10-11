@@ -28,11 +28,12 @@ void	init(t_img *img)
 {
 	(img->map = (t_map *)malloc(sizeof(t_map))) ? 0 : exit(-1);
 	(img->player = (t_player *)malloc(sizeof(t_player))) ? 0 : exit(-1);
-	PLAYER->posx = 50;
-	PLAYER->posy = 50;
-	PLAYER->dirx = 50;
+	PLAYER->posx = 2;
+	PLAYER->posy = 2;
+	PLAYER->dirx = -1;
 	PLAYER->diry = 0;
-	PLAYER->rot = 0;
+	PLAYER->plx = 0;
+	PLAYER->ply = 1;
 }
 
 void	disp_map(t_img *img)
