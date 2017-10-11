@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 20:18:29 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/10 18:07:36 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/11 13:57:50 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,11 @@ void	draw_line(t_img *img, t_point p0, t_point p1, int err2)
 
 int		draw(t_img *img)
 {
-	int		x;
-	int		y;
-
-	y = -1;
-	while (++y < MAP->heigh)
-	{
-		x = -1;
-		while (++x < MAP->width)
-			ft_printf("%i", MAP->map[y][x]);
-		ft_printf("\n");
-	}
-	exit(0);
+	ft_bzero(img->buffer, WIN_WIDTH * WIN_HEIGH * (img->bpp >> 3));
+	put_pixel(img, PLAYER->posx, PLAYER->posy, WHITE);
+	put_pixel(img, PLAYER->posx + 1, PLAYER->posy, WHITE);
+	put_pixel(img, PLAYER->posx, PLAYER->posy + 1, WHITE);
+	put_pixel(img, PLAYER->posx + 1, PLAYER->posy + 1, WHITE);
+	mlx_put_image_to_window(img->mlx, img->win, img->ptr, 0, 0);
 	return (0);
 }

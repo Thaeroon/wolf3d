@@ -6,7 +6,7 @@
 #    By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 16:48:28 by nmuller           #+#    #+#              #
-#    Updated: 2017/10/10 18:03:50 by nmuller          ###   ########.fr        #
+#    Updated: 2017/10/11 13:49:14 by nmuller          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ LKFLAGS =  -L$(LIB_PATH)/minilibx_macos -lmlx -framework OpenGL -framework AppKi
 LIB = $(LIB_PATH)/libft/libft.a $(LIB_PATH)/minilibx_macos/libmlx.a
 
 # files
-SRC_FILES =	main.c display.c input.c utils.c
+SRC_FILES =	main.c display.c input.c utils.c movement.c
 
 # executable name
 NAME = wolf3d
@@ -49,7 +49,7 @@ SRC = $(addprefix $(SRC_PATH)/,$(SRC_FILES))
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_FILES))
 
 # rules
-.PHONY: clean fclean re norme lib fcleanall
+.PHONY: clean fclean re norme lib fcleanall movement.c
 all: lib $(NAME)
 
 $(NAME): $(OBJ) $(LIB)
