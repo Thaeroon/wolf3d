@@ -6,33 +6,33 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 00:09:23 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/12 00:42:10 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/12 19:27:12 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	init_case_len(t_ray *ray)
+void	get_ray_len(t_ray *ray)
 {
-	if (ray->dirx > 0)
-	{
-		ray->incx = 1;
-		ray->lenx = (ray->casex + 1.0 - ray->posx) * ray->deltax;
-	}
-	else
+	if (ray->dirx < 0)
 	{
 		ray->incx = -1;
 		ray->lenx = (ray->posx - ray->casex) * ray->deltax;
 	}
-	if (ray->diry > 0)
-	{
-		ray->incy = 1;
-		ray->leny = (ray->casey + 1.0 - ray->posy) * ray->deltay;
-	}
 	else
+	{
+		ray->incx = 1;
+		ray->lenx = (ray->casex + 1.0 - ray->posx) * ray->deltax;
+	}
+	if (ray->diry < 0)
 	{
 		ray->incy = -1;
 		ray->leny = (ray->posy - ray->casey) * ray->deltay;
+	}
+	else
+	{
+		ray->incy = 1;
+		ray->leny = (ray->casey + 1.0 - ray->posy) * ray->deltay;
 	}
 }
 
@@ -40,28 +40,84 @@ void	init_ray(t_img *img, t_ray *ray, int x)
 {
 	ray->posx = PLAYER->posx;
 	ray->posy = PLAYER->posy;
-	ray->col = (2 * x / (double)WIN_WIDTH) - 1;
-	ray->dirx = PLAYER->dirx + PLAYER->plx * ray->col;
-	ray->diry = PLAYER->diry + PLAYER->ply * ray->col;
-	ray->deltax = sqrt(1 + (ray->diry * ray->diry) / (ray->dirx * ray->dirx));
-	ray->deltay = sqrt(1 + (ray->dirx * ray->dirx) / (ray->diry * ray->diry));
 	ray->casex = (int)ray->posx;
 	ray->casey = (int)ray->posy;
-	init_case_len(ray);
+	ray->col = 2 * x / (double)WIN_WIDTH - 1;
+	ray->dirx = PLAYER->dirx + PLAYER->plx * ray->col;
+	ray->diry = PLAYER->diry + PLAYER->ply * ray->col;
+	ray->deltax = sqrt(1.0 + (ray->diry * ray->diry) / (ray->dirx * ray->dirx));
+	ray->deltay = sqrt(1.0 + (ray->dirx * ray->dirx) / (ray->diry * ray->diry));
+	get_ray_len(ray);
+}
+
+int		get_wall_dist(t_ray *ray, t_img *img)
+{
+	int		wall_hit;
+	int		wall_side_hit;
+
+	wall_hit = 0;
+	while (!wall_hit)
+	{
+		if (ray->lenx < ray->leny)
+		{
+			ray->lenx += ray->deltax;
+			ray->casex += ray->incx;
+			wall_side_hit = 0;
+		}
+		else
+		{
+			ray->leny += ray->deltay;
+			ray->casey += ray->incy;
+			wall_side_hit = 1;
+		}
+//		ft_printf("mx=%i my=%i, x=%i y=%i val=%i\n",
+//		MAP->width, MAP->heigh, ray->casex, ray->casey, MAP->map[ray->casey][ray->casex]);
+		wall_hit = (MAP->map[ray->casey][ray->casex] > 0);
+	}
+//	ft_printf("\n");
+	img->side = wall_side_hit;
+	return (wall_side_hit);
+}
+
+void	draw_ray(t_img *img, double corr_dist, int x)
+{
+	int		y;
+	int		y1;
+	int		y2;
+	int		wall_height;
+
+	wall_height = (int)(WIN_HEIGH / corr_dist);
+	y1 = -wall_height / 2 + WIN_HEIGH / 2;
+	y1 = (y1 > 0) ? y1 : 0;
+	y2 = wall_height / 2 + WIN_HEIGH / 2;
+	y2 = (y2 < WIN_HEIGH) ? y2 : WIN_HEIGH - 1;
+
+	y = y1;
+	while (y < y2)
+	{
+		if (img->side)
+			put_pixel(img, x, y, WHITE);
+		else
+			put_pixel(img, x, y, LIGHTGREY);
+		++y;
+	}
 }
 
 void	do_raycasting(t_img *img)
 {
 	int		x;
-	int		y;
 	t_ray	*ray;
+	double	corr_dist;
 
 	(ray = (t_ray *)malloc(sizeof(t_ray))) ? 0 : exit(-1);
 	x = -1;
 	while (++x < WIN_WIDTH)
 	{
 		init_ray(img, ray, x);
+		corr_dist = (get_wall_dist(ray, img) == 0)
+			? (ray->casex - ray->posx + (1.0 - ray->incx) / 2.0) / ray->dirx
+			: (ray->casey - ray->posy + (1.0 - ray->incy) / 2.0) / ray->diry;
+		draw_ray(img, corr_dist, x);
 	}
 	free(ray);
-	(void)y;
 }

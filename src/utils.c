@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 18:03:10 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/11 15:15:18 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/12 19:59:38 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	init(t_img *img)
 {
 	(img->map = (t_map *)malloc(sizeof(t_map))) ? 0 : exit(-1);
 	(img->player = (t_player *)malloc(sizeof(t_player))) ? 0 : exit(-1);
-	PLAYER->posx = 2;
-	PLAYER->posy = 2;
+	PLAYER->posx = 22;
+	PLAYER->posy = 12;
 	PLAYER->dirx = -1;
 	PLAYER->diry = 0;
 	PLAYER->plx = 0;

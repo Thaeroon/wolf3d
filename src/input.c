@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 17:08:33 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/10 18:07:04 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/12 16:11:00 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	get_map_size(const char *file, t_img *img)
 		MAP->width = (tmp_width > MAP->width) ? tmp_width : MAP->width;
 	}
 	close(fd);
-	(ret < 0) ? exit(3) : 0;
+	(ret < 0) ? exit(2) : 0;
 }
 
 void	populate_map(const char *file, t_img *img)
@@ -53,7 +53,7 @@ void	populate_map(const char *file, t_img *img)
 		++y;
 	}
 	close(fd);
-	(ret < 0) ? exit(3) : 0;
+	(ret < 0) ? exit(2) : 0;
 }
 
 void	get_input(const char *file, t_img *img)

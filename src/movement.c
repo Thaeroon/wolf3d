@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 13:24:56 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/11 16:36:23 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/12 19:58:05 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@ void	move(int key, t_img *img)
 {
 	if (key == Z)
 	{
-		PLAYER->posx += PLAYER->dirx * MVM_SPEED;
-		PLAYER->posy += PLAYER->diry * MVM_SPEED;
+		(!MAP->map[(int)PLAYER->posy][(int)(PLAYER->posx + PLAYER->dirx * MVM_SPEED)]) ? PLAYER->posx += PLAYER->dirx * MVM_SPEED : 0;
+		(!MAP->map[(int)(PLAYER->posy + PLAYER->diry * MVM_SPEED)][(int)PLAYER->posx]) ? PLAYER->posy += PLAYER->diry * MVM_SPEED : 0;
 	}
 	else if (key == S)
 	{
-		PLAYER->posx -= PLAYER->dirx * MVM_SPEED;
-		PLAYER->posy -= PLAYER->diry * MVM_SPEED;
+		(!MAP->map[(int)PLAYER->posy][(int)(PLAYER->posx - PLAYER->dirx * MVM_SPEED)]) ? PLAYER->posx -= PLAYER->dirx * MVM_SPEED : 0;
+		(!MAP->map[(int)(PLAYER->posy - PLAYER->diry * MVM_SPEED)][(int)PLAYER->posx]) ? PLAYER->posy -= PLAYER->diry * MVM_SPEED : 0;
 	}
 	else if (key == A)
 	{
-		PLAYER->posx += PLAYER->plx * MVM_SPEED;
-		PLAYER->posy += PLAYER->ply * MVM_SPEED;
+		(!MAP->map[(int)PLAYER->posy][(int)(PLAYER->posx - PLAYER->plx * MVM_SPEED)]) ? PLAYER->posx -= PLAYER->plx * MVM_SPEED : 0;
+		(!MAP->map[(int)(PLAYER->posy - PLAYER->ply * MVM_SPEED)][(int)PLAYER->posx]) ? PLAYER->posy -= PLAYER->ply * MVM_SPEED : 0;
 	}
 	else if (key == E)
 	{
-		PLAYER->posx -= PLAYER->plx * MVM_SPEED;
-		PLAYER->posy -= PLAYER->ply * MVM_SPEED;
+		(!MAP->map[(int)PLAYER->posy][(int)(PLAYER->posx + PLAYER->plx * MVM_SPEED)]) ? PLAYER->posx += PLAYER->plx * MVM_SPEED : 0;
+		(!MAP->map[(int)(PLAYER->posy + PLAYER->ply * MVM_SPEED)][(int)PLAYER->posx]) ? PLAYER->posy += PLAYER->ply * MVM_SPEED : 0;
 	}
 }
 
@@ -57,9 +57,9 @@ int		key_pressed(int key, void *parram)
 	if (key == ESC)
 		clean_quit(parram);
 	else if (key == Q)
-		rotation(img, -ROT_SPEED);
-	else if (key == D)
 		rotation(img, ROT_SPEED);
+	else if (key == D)
+		rotation(img, -ROT_SPEED);
 	else if (key == S || key == A || key == Z || key == E)
 		move(key, parram);
 	if (key == Q || key == S || key == D ||  key == A || key == Z || key == E)

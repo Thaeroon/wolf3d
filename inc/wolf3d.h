@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 06:24:52 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/12 00:41:13 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/12 20:01:35 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 
 # define WIN_WIDTH 480
 # define WIN_HEIGH 240
-# define WHITE 0x00ffffff
+# define WHITE 0x000000ff
+# define LIGHTGREY 0x0000ff00
 # define MAP img->map
 # define PLAYER img->player
 # define ROT_SPEED 0.2
-# define MVM_SPEED 10
-# define TILE_S 64
+# define MVM_SPEED 0.5
 # define ESC 65307 //53
 # define A 97 //12
 # define Z 122 //13
@@ -37,12 +37,6 @@
 # define Q 113 //0
 # define S 115 //1
 # define D 100 //2
-
-typedef struct	s_point
-{
-	int		x;
-	int		y;
-}				t_point;
 
 typedef struct	s_map
 {
@@ -89,6 +83,7 @@ typedef struct	s_img
 	void		*mlx;
 	t_map		*map;
 	t_player	*player;
+	int			side;
 }				t_img;
 
 void			destroy(t_img *img);
@@ -100,6 +95,7 @@ void			destroy(t_img *img);
 void			move(int key, t_img *img);
 int				key_pressed(int key, void *parram);
 void			do_raycasting(t_img *img);
+void			put_pixel(t_img *img, int x, int y, int c);
 
 void			disp_map(t_img *img);
 
