@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 00:09:23 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/12 23:13:51 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/13 01:04:18 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int		get_wall_dist(t_ray *ray, t_img *img)
 			ray->casey += ray->incy;
 			wall_side_hit = 1;
 		}
-		wall_hit = (MAP->map[ray->casey][ray->casex] > 0);
+		wall_hit = (MAP->map[ray->casex][ray->casey] > 0);
 	}
 	img->side = wall_side_hit;
 	return (wall_side_hit);

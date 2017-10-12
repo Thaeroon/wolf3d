@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 18:03:10 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/13 00:40:52 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/13 00:44:38 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	destroy(t_img *img)
 
 	y = -1;
 	mlx_destroy_image(img->mlx, img->ptr);
+	mlx_destroy_window(img->mlx, img->win);
 	if (MAP)
 		while (++y < MAP->heigh)
 			free(MAP->map[y]);

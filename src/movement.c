@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 13:24:56 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/12 22:37:25 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/13 01:21:39 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ void	move_for_back(int key, t_img *img)
 {
 	if (key == Z)
 	{
-		(!MAP->map[(int)PLAYER->posy][(int)(PLAYER->posx + PLAYER->dirx *
-			MVM_SPEED)]) ? PLAYER->posx += PLAYER->dirx * MVM_SPEED : 0;
-		(!MAP->map[(int)(PLAYER->posy + PLAYER->diry * MVM_SPEED)]
-		[(int)PLAYER->posx]) ? PLAYER->posy += PLAYER->diry * MVM_SPEED : 0;
+		(!MAP->map[(int)(PLAYER->posx + PLAYER->dirx * MVM_SPEED)]
+		[(int)PLAYER->posy]) ? PLAYER->posx += PLAYER->dirx * MVM_SPEED : 0;
+		(!MAP->map[(int)PLAYER->posx][(int)(PLAYER->posy + PLAYER->diry
+			* MVM_SPEED)]) ? PLAYER->posy += PLAYER->diry * MVM_SPEED : 0;
 	}
 	else if (key == S)
 	{
-		(!MAP->map[(int)PLAYER->posy][(int)(PLAYER->posx - PLAYER->dirx
-			* MVM_SPEED)]) ? PLAYER->posx -= PLAYER->dirx * MVM_SPEED : 0;
-		(!MAP->map[(int)(PLAYER->posy - PLAYER->diry * MVM_SPEED)]
-		[(int)PLAYER->posx]) ? PLAYER->posy -= PLAYER->diry * MVM_SPEED : 0;
+		(!MAP->map[(int)(PLAYER->posx - PLAYER->dirx * MVM_SPEED)]
+		[(int)PLAYER->posy]) ? PLAYER->posx -= PLAYER->dirx * MVM_SPEED : 0;
+		(!MAP->map[(int)PLAYER->posx][(int)(PLAYER->posy - PLAYER->diry
+			* MVM_SPEED)]) ? PLAYER->posy -= PLAYER->diry * MVM_SPEED : 0;
 	}
 }
 
@@ -34,17 +34,17 @@ void	move_side(int key, t_img *img)
 {
 	if (key == Q)
 	{
-		(!MAP->map[(int)PLAYER->posy][(int)(PLAYER->posx - PLAYER->plx
-			* MVM_SPEED)]) ? PLAYER->posx -= PLAYER->plx * MVM_SPEED : 0;
-		(!MAP->map[(int)(PLAYER->posy - PLAYER->ply * MVM_SPEED)]
-		[(int)PLAYER->posx]) ? PLAYER->posy -= PLAYER->ply * MVM_SPEED : 0;
+		(!MAP->map[(int)(PLAYER->posx - PLAYER->plx * MVM_SPEED)]
+		[(int)PLAYER->posy]) ? PLAYER->posx -= PLAYER->plx * MVM_SPEED : 0;
+		(!MAP->map[(int)PLAYER->posx][(int)(PLAYER->posy - PLAYER->ply
+			* MVM_SPEED)]) ? PLAYER->posy -= PLAYER->ply * MVM_SPEED : 0;
 	}
 	else if (key == D)
 	{
-		(!MAP->map[(int)PLAYER->posy][(int)(PLAYER->posx + PLAYER->plx
-			* MVM_SPEED)]) ? PLAYER->posx += PLAYER->plx * MVM_SPEED : 0;
-		(!MAP->map[(int)(PLAYER->posy + PLAYER->ply * MVM_SPEED)]
-		[(int)PLAYER->posx]) ? PLAYER->posy += PLAYER->ply * MVM_SPEED : 0;
+		(!MAP->map[(int)(PLAYER->posx + PLAYER->plx * MVM_SPEED)]
+		[(int)PLAYER->posy]) ? PLAYER->posx += PLAYER->plx * MVM_SPEED : 0;
+		(!MAP->map[(int)PLAYER->posx][(int)(PLAYER->posy + PLAYER->ply
+			* MVM_SPEED)]) ? PLAYER->posy += PLAYER->ply * MVM_SPEED : 0;
 	}
 }
 
