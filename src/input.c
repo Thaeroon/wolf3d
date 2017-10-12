@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 17:08:33 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/12 16:11:00 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/12 23:57:12 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ void	get_map_size(const char *file, t_img *img)
 			++tmp_width;
 		MAP->width = (tmp_width > MAP->width) ? tmp_width : MAP->width;
 	}
+	MAP->width += 2;
+	MAP->heigh += 2;
+	free(line);
 	close(fd);
 	(ret < 0) ? exit(2) : 0;
 }
@@ -38,22 +41,51 @@ void	get_map_size(const char *file, t_img *img)
 void	populate_map(const char *file, t_img *img)
 {
 	char	*line;
-	int		ret;
 	int		fd;
 	int		x;
 	int		y;
 
 	((fd = open(file, O_RDONLY)) == -1) ? exit(-1) : 0;
 	y = 0;
-	while ((ret = get_next_line(fd, &line)) > 0)
+	x = -1;
+	while (++x < MAP->width)
+		MAP->map[0][x] = 9;
+	while (get_next_line(fd, &line) > 0)
 	{
 		x = -1;
+		MAP->map[y + 1][0] = 9;
 		while (line[++x])
-			MAP->map[y][x] = (line[x] - '0' > 0) ? line[x] - '0' : 0;
+			MAP->map[y + 1][x + 1] = (line[x] - '0' > 0) ? line[x] - '0' : 0;
+		MAP->map[y + 1][x + 1] = 9;
 		++y;
 	}
+	x = -1;
+	while (++x < MAP->width)
+		MAP->map[y + 1][x] = 9;
+	free(line);
 	close(fd);
-	(ret < 0) ? exit(2) : 0;
+}
+
+int		place_player(t_img *img)
+{
+	int		x;
+	int		y;
+
+	y = -1;
+	while (++y < MAP->heigh)
+	{
+		x = -1;
+		while (++x < MAP->width)
+		{
+			if (MAP->map[y][x] == 0)
+			{
+				PLAYER->posx = x + 0.5;
+				PLAYER->posy = y + 0.5;
+				return (1);
+			}
+		}
+	}
+	return (0);
 }
 
 void	get_input(const char *file, t_img *img)
@@ -66,4 +98,5 @@ void	get_input(const char *file, t_img *img)
 	while (++i < MAP->heigh)
 		(MAP->map[i] = (int *)malloc(sizeof(int ) * MAP->width)) ? 0 : exit(-1);
 	populate_map(file, img);
+	(place_player(img)) ? 0 : exit(1);
 }

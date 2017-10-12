@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 00:09:23 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/12 19:27:12 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/12 23:13:51 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,8 @@ int		get_wall_dist(t_ray *ray, t_img *img)
 			ray->casey += ray->incy;
 			wall_side_hit = 1;
 		}
-//		ft_printf("mx=%i my=%i, x=%i y=%i val=%i\n",
-//		MAP->width, MAP->heigh, ray->casex, ray->casey, MAP->map[ray->casey][ray->casex]);
 		wall_hit = (MAP->map[ray->casey][ray->casex] > 0);
 	}
-//	ft_printf("\n");
 	img->side = wall_side_hit;
 	return (wall_side_hit);
 }
@@ -92,15 +89,18 @@ void	draw_ray(t_img *img, double corr_dist, int x)
 	y2 = wall_height / 2 + WIN_HEIGH / 2;
 	y2 = (y2 < WIN_HEIGH) ? y2 : WIN_HEIGH - 1;
 
-	y = y1;
+	y = -1;
+	while (++y < y1)
+		put_pixel(img, x, y, SKY_COLOR);
 	while (y < y2)
 	{
 		if (img->side)
-			put_pixel(img, x, y, WHITE);
+			put_pixel(img, x, y++, WHITE);
 		else
-			put_pixel(img, x, y, LIGHTGREY);
-		++y;
+			put_pixel(img, x, y++, WHITE / 2);
 	}
+	while (y < WIN_HEIGH)
+		put_pixel(img, x, y++, GROUND_COLOR);
 }
 
 void	do_raycasting(t_img *img)
