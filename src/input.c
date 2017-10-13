@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 17:08:33 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/13 15:58:55 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/13 16:14:57 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ void	populate_map(const char *file, t_img *img)
 			MAP->map[y + 1][x + 1] = (line[x] - '0' > 0) ? line[x] - '0' : 0;
 		while (x < MAP->width)
 			MAP->map[y + 1][++x] = 0;
-		MAP->map[y + 1][x - 1] = 9;
-		++y;
+		(MAP->map[y + 1][x - 1] = 9) && (++y);
 	}
 	x = -1;
 	while (++x < MAP->width)
@@ -100,9 +99,5 @@ void	get_input(const char *file, t_img *img)
 	while (++i < MAP->heigh)
 		(MAP->map[i] = (int *)malloc(sizeof(int ) * MAP->width)) ? 0 : exit(-1);
 	populate_map(file, img);
-
-	disp_map(img);
-
 	(place_player(img)) ? 0 : exit(1);
-	printf("posx = %f, poy = %f\n", PLAYER->posx, PLAYER->posy);
 }
