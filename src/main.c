@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 16:06:06 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/13 02:51:23 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/13 03:31:54 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ int		main(int argc, char const *argv[])
 	mlx_hook(img->win, 2, 1L << 0, key_pressed, img);
 	mlx_hook(img->win, 17, 0, clean_quit, img);
 	mlx_expose_hook(img->win, draw, img);
-
-	disp_map(img);
-
 	mlx_loop(img->mlx);
 	destroy(img);
 	return (0);
