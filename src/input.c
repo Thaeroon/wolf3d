@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 17:08:33 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/12 23:57:12 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/13 02:57:21 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void	populate_map(const char *file, t_img *img)
 	{
 		x = -1;
 		MAP->map[y + 1][0] = 9;
-		while (line[++x])
+		while (++x < MAP->width)
 			MAP->map[y + 1][x + 1] = (line[x] - '0' > 0) ? line[x] - '0' : 0;
-		MAP->map[y + 1][x + 1] = 9;
+		MAP->map[y + 1][x - 1] = 9;
 		++y;
 	}
 	x = -1;

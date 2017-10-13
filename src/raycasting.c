@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 00:09:23 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/13 01:04:18 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/13 02:40:00 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,14 @@ int		get_wall_dist(t_ray *ray, t_img *img)
 			ray->lenx += ray->deltax;
 			ray->casex += ray->incx;
 			wall_side_hit = 0;
+			img->color = (ray->incx < 0) ? COLOR_NORTH : COLOR_SOUTH;
 		}
 		else
 		{
 			ray->leny += ray->deltay;
 			ray->casey += ray->incy;
 			wall_side_hit = 1;
+			img->color = (ray->incy < 0) ? COLOR_WEST : COLOR_EAST;
 		}
 		wall_hit = (MAP->map[ray->casex][ray->casey] > 0);
 	}
@@ -94,10 +96,14 @@ void	draw_ray(t_img *img, double corr_dist, int x)
 		put_pixel(img, x, y, SKY_COLOR);
 	while (y < y2)
 	{
-		if (img->side)
-			put_pixel(img, x, y++, WHITE);
-		else
-			put_pixel(img, x, y++, WHITE / 2);
+		if (img->color == COLOR_NORTH)
+			put_pixel(img, x, y++, COLOR_NORTH);
+		else if (img->color == COLOR_SOUTH)
+			put_pixel(img, x, y++, COLOR_SOUTH);
+		else if (img->color == COLOR_EAST)
+			put_pixel(img, x, y++, COLOR_EAST);
+		else if (img->color == COLOR_WEST)
+			put_pixel(img, x, y++, COLOR_WEST);
 	}
 	while (y < WIN_HEIGH)
 		put_pixel(img, x, y++, GROUND_COLOR);

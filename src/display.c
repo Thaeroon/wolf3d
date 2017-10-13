@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 20:18:29 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/13 00:29:58 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/13 02:45:05 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	put_pixel(t_img *img, int x, int y, int c)
 int		draw(t_img *img)
 {
 	ft_bzero(img->buffer, WIN_WIDTH * WIN_HEIGH * (img->bpp >> 3));
-	printf("posx=%f, posy=%f\n", PLAYER->posx, PLAYER->posy);
-	printf("dirx=%f, diry=%f\n\n", PLAYER->dirx, PLAYER->diry);
 	do_raycasting(img);
 	mlx_put_image_to_window(img->mlx, img->win, img->ptr, 0, 0);
 	return (0);

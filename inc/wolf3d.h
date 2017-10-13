@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 06:24:52 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/13 00:03:28 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/13 02:44:20 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@
 # include "get_next_line.h"
 # include "mlx.h"
 
-#include <stdio.h>
-
-# define WIN_WIDTH 480
-# define WIN_HEIGH 240
+# define WIN_WIDTH 640
+# define WIN_HEIGH 480
 # define MAP img->map
 # define PLAYER img->player
 # define ROT_SPEED 0.2
@@ -32,6 +30,13 @@
 # define WHITE 0x00ffffff
 # define SKY_COLOR 0x00046380
 # define GROUND_COLOR 0x00787746
+# define RED 0x00ff0000
+# define GREEN 0x0000ff00
+# define BLUE 0x000000ff
+# define COLOR_NORTH WHITE
+# define COLOR_SOUTH BLUE
+# define COLOR_EAST RED
+# define COLOR_WEST GREEN
 
 # define ESC 65307 //53
 # define A 97 //12
@@ -89,6 +94,7 @@ typedef struct	s_img
 	t_map		*map;
 	t_player	*player;
 	int			side;
+	int			color;
 }				t_img;
 
 void			destroy(t_img *img);
