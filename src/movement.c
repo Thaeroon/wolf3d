@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 13:24:56 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/13 02:46:15 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/13 15:12:57 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ int		key_pressed(int key, void *parram)
 	if (key == Q || key == S || key == D ||  key == A || key == Z || key == E
 								|| key == LEFT || key == RIGHT)
 		draw(parram);
+		printf("posx = %f, poy = %f\n", PLAYER->posx, PLAYER->posy);
 	return (0);
 }

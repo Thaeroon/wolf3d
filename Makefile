@@ -6,7 +6,7 @@
 #    By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 16:48:28 by nmuller           #+#    #+#              #
-#    Updated: 2017/10/11 13:49:14 by nmuller          ###   ########.fr        #
+#    Updated: 2017/10/13 14:37:58 by nmuller          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ LKFLAGS =  -L$(LIB_PATH)/minilibx_macos -lmlx -framework OpenGL -framework AppKi
 LIB = $(LIB_PATH)/libft/libft.a $(LIB_PATH)/minilibx_macos/libmlx.a
 
 # files
-SRC_FILES =	main.c display.c input.c utils.c movement.c
+SRC_FILES =	main.c display.c input.c utils.c movement.c raycasting.c
 
 # executable name
 NAME = wolf3d

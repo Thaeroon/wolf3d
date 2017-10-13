@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 06:24:52 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/13 02:44:20 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/13 15:14:26 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define MAP img->map
 # define PLAYER img->player
 # define ROT_SPEED 0.2
-# define MVM_SPEED 0.5
+# define MVM_SPEED 0.2
 
 # define WHITE 0x00ffffff
 # define SKY_COLOR 0x00046380
@@ -38,15 +38,15 @@
 # define COLOR_EAST RED
 # define COLOR_WEST GREEN
 
-# define ESC 65307 //53
-# define A 97 //12
-# define Z 122 //13
-# define E 101 //14
-# define Q 113 //0
-# define S 115 //1
-# define D 100 //2
-# define LEFT 65361
-# define RIGHT 65363
+# define ESC 53 //65307
+# define A 12 //97
+# define Z 13 //122
+# define E 14 //101
+# define Q 0 //113
+# define S 1 //115
+# define D 2 //100
+# define LEFT 123 //65361
+# define RIGHT 124 //65363
 
 typedef struct	s_map
 {
