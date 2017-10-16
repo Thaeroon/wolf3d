@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 18:03:10 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/13 16:11:31 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/16 15:51:30 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	destroy(t_img *img)
 			free(MAP->map[y]);
 	free(MAP->map);
 	free(MAP);
+	free(img->ptr);
+	free(img->win);
 	free(img->mlx);
 	free(PLAYER);
 	free(img);
