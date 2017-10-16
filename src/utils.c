@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 18:03:10 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/16 15:51:30 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/16 17:05:46 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,13 @@ void	destroy(t_img *img)
 	int		y;
 
 	y = -1;
-	mlx_destroy_image(img->mlx, img->ptr);
 	mlx_destroy_window(img->mlx, img->win);
+	mlx_destroy_image(img->mlx, img->ptr);
 	if (MAP)
 		while (++y < MAP->heigh)
 			free(MAP->map[y]);
 	free(MAP->map);
 	free(MAP);
-	free(img->ptr);
-	free(img->win);
-	free(img->mlx);
 	free(PLAYER);
 	free(img);
 }
