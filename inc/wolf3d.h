@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 06:24:52 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/16 17:07:19 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/17 13:24:53 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define MAP img->map
 # define PLAYER img->player
 # define ROT_SPEED 0.2
-# define MVM_SPEED 0.2
+# define MVM_SPEED 0.3
 
 # define WHITE 0x00ffffff
 # define SKY_COLOR 0x00046380
