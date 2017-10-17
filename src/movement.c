@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 13:24:56 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/16 16:22:27 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/17 11:41:32 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ int		key_pressed(int key, void *parram)
 	if (key == ESC)
 		clean_quit(parram);
 	else if (key == A || key == LEFT)
-		rotation(img, ROT_SPEED);
-	else if (key == E || key == RIGHT)
 		rotation(img, -ROT_SPEED);
+	else if (key == E || key == RIGHT)
+		rotation(img, ROT_SPEED);
 	else if (key == S || key == Z)
 		move_for_back(key, parram);
 	else if (key == Q || key == D)

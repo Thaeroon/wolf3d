@@ -6,7 +6,7 @@
 /*   By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 18:03:10 by nmuller           #+#    #+#             */
-/*   Updated: 2017/10/16 17:05:46 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/10/17 11:37:42 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	init(t_img *img)
 	PLAYER->dirx = 1;
 	PLAYER->diry = 0;
 	PLAYER->plx = 0;
-	PLAYER->ply = -0.66;
+	PLAYER->ply = 0.66;
 }
 
 void	disp_map(t_img *img)
